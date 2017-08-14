@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*解决闪烁需要添加此样式*/
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 使用v-cloak属性 来避免闪烁 -->
+
+<div id="app">
+    <h1 v-cloak>{{msg}}</h1>
+</div>
+
+
+<script src="../dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+           msg:'哈哈'
+        }
+    });
+</script>
+</body>
+</html>

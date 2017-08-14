@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <parent></parent>
+</div>
+<template id="parent">
+    <div>
+        <h1>父组件 <mark>{{msg.name}}</mark></h1>
+        <children :n="msg"></children>
+    </div>
+</template>
+<template id="children">
+    <h1 @click="changeData">子组件 <mark>{{n.name}}</mark></h1>
+</template>
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    //数据同步的本质：是使用引用数据类型的数据
+
+    var vm = new Vue({
+        el:'#app',
+        components:{
+            parent:{
+                template:'#parent',
+                data:function(){
+                    return{
+                        msg:{name:'哈哈哈'}
+                    }
+                },
+                components:{
+                    children:{
+                        props:{n:Object},
+                        template:"#children",
+                        methods:{
+                            changeData:function(){
+                                this.n.name='哇哇哇!'
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

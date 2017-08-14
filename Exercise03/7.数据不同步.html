@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+<parent></parent>
+
+</div>
+
+<template id="parent">
+    <div>
+        <h1>我是父元素 <mark>{{msg}}</mark></h1>
+        <children :n="msg"></children>
+    </div>
+</template>
+
+
+<script src="../dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+       el:'#app',
+        components:{
+           parent:{
+               template:"#parent",
+               data:function(){
+                 return {msg:'月儿'}
+               },
+               components:{
+                   children:{
+                       props:['n'],
+                       template:'<h1 @click="sync">我是children <mark>{{b}}</mark></h1>',
+                       data:function(){
+                         return {b:this.n}
+                       },
+                       methods:{
+                           sync:function(){
+                               this.b='vivian';
+                           }
+                       }
+                   }
+               }
+           }
+        }
+    });
+
+
+</script>
+</body>
+</html>

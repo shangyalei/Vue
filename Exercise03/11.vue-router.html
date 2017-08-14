@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .router-link-active{
+            background:red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!-- 通过router-link来添加路由跳转 -->
+    <router-link to="/home">home首页</router-link>
+    <router-link to="/list">list</router-link>
+    <router-link to="/detail">detail</router-link>
+
+    <!-- 通过router-view来显示页面 -->
+    <router-view></router-view>
+</div>
+
+<template id="home">
+    <div>
+        <h1>home页面11111</h1>
+        <router-link to="/home/login">登录</router-link>
+        <router-link to="/home/reg">注册</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<template id="list">
+    <div>
+        <h1>list页面</h1>
+        <router-link to="/list/news/111111">文章1</router-link>
+        <router-link to="/list/news/222222">文章2</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+
+<script src="../dist/vue.js"></script>
+<script src="../dist/vue-router.js"></script>
+<script>
+
+    const Home={template:'#home'};
+    const List={template:"#list"};
+    const Detail={template:'<h1>详情页</h1>'};
+
+
+    //创建一个路由实例
+    const router = new VueRouter({
+        routes:[
+            {path:'/home',component:Home,
+                children:[
+                    {path:'login',component:{
+                        template:'<h1>登录</h1>'
+                    }},
+                    {path:'reg',component:{
+                        template:'<h1>注册</h1>'
+                    }}
+                ]
+            },
+            {path:'/list',component:List,
+                children:[
+                    {path:'news/:id',
+                        beforeEnter(to,form,next){//通过JS来获取路由参数
+                            console.log(to.params.id);
+                            next();
+                        },
+                        component:{
+                        template:'<h2>文章{{$route.params.id}}</h2>'
+                    }}
+                ]
+            },
+            {path:'/detail',component:Detail},
+            {path:'*',component:Home}
+        ]
+    });
+    //把配置好的router,放入vue实例中
+    const vm = new Vue({
+        router,
+        el:'#app'
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <temp1></temp1>
+    <temp2></temp2>
+</div>
+
+<script src="../dist/vue.js"></script>
+<script>
+    let Event = new Vue;
+    let vm = new Vue({
+        el: "#app",
+        components: {
+            temp1: {
+                template: "<h1>组件1{{msg}}</h1>",
+                data: function () {
+                    return {msg: ''}
+                },
+                mounted(){//声明周期的钩子函数，自动绑定
+                    Event.$on('leilei',(data)=>{
+                        this.msg=data;
+                    })
+                }
+
+            },
+            temp2: {
+                template: "<h1 @click='sendData'>组件2{{msg}}</h1>",
+                data: function () {
+                    return {msg: 'hello'}
+                },
+                methods: {
+                    sendData: function () {
+                        //发布数据
+                        Event.$emit('leilei', this.msg);
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

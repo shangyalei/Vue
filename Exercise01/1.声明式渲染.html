@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- {{}}数据已经和模板绑定在一起了 -->
+<div id="app">
+    {{msg}}
+</div>
+
+
+
+<script src="../dist/vue.js"></script>
+<script>
+
+//1.声明式渲染，使用模板语法渲染数据
+//2.Vue是一个类，其构造函数已经定义好了很多的类私有属性
+//3.vm就是Vue类的一个实例，可以使用Vue类的所有的方法和属性
+
+var vm = new Vue({
+    //document.querySelectAll("#app");
+    el:'#app',
+    //要渲染的的数据 document.querySelectAll("#app").innerHTML="hello world";
+    data:{
+        msg:'hello world'
+    }
+});
+
+console.log(vm instanceof Vue);//true
+
+//vm.$el='#app';
+//vm._data.msg="尚亚磊";
+
+
+
+</script>
+
+
+
+</body>
+</html>

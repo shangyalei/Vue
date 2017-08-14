@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <parent></parent>
+</div>
+<template id="parent">
+    <div>
+        <h1>父组件{{name}}</h1>
+        <children @s="getData"></children>
+    </div>
+</template>
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'#app',
+        components:{
+            parent:{
+                template:'#parent',
+                data:function(){
+                    return {
+                        name:'糖宝'
+                    }
+                },
+                methods:{
+                    getData:function(data){
+                        //alert(data);
+                        this.name=data;
+                    }
+                },
+                components:{
+                    children:{
+                        template:'<h2 @click="changeName">子组件</h2>',
+                        methods:{
+                            changeName:function(){
+                                //发射子组件的数据，事件名为s
+                                this.$emit('s','vivian');
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+    });
+
+
+</script>
+
+
+
+
+</body>
+</html>

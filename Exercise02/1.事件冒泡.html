@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .parent{
+            width: 500px;
+            height: 500px;
+            background-color: blue;
+            color:white;
+
+        }
+        .children{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            line-height:300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 当父亲身上有点击事件，儿子身上也有点击事件，就会发生冒泡事件 -->
+<!-- Vue中使用事件修饰符来阻止事件冒泡 -->
+
+<div id="app">
+    <div class="parent" @click="father">
+        我是父亲
+        <div class="children" @click.stop="son">
+            我是儿子
+        </div>
+    </div>
+
+    <!-- 阻止默认行为 -->
+    <a @click.prevent href="http://www.baidu.com">百度一下</a>
+
+
+</div>
+
+
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#app",
+        methods:{
+            father:function(){
+                alert("我是父亲！");
+            },
+            son:function(e){
+//                e.stopPropagation();
+                alert("我是儿子！");
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

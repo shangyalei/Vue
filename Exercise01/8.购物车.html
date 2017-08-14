@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+</head>
+<body>
+
+<div id="app">
+
+    <div class="container">
+
+        <div class="row">
+            <table type="table" class="col-md-12 table table-bordered">
+                <caption class="text-danger">
+                    购物车
+                </caption>
+                <tr>
+                    <th class="text-center">商品名称</th>
+                    <th class="text-center">商品价格</th>
+                    <th class="text-center">操作</th>
+                </tr>
+                <tr v-for="(item,index) in ary">
+                    <td class="text-center">{{item.name}}</td>
+                    <td class="text-center">{{item.price}}</td>
+                    <td class="text-center">
+                        <a href="javascript:;" @click="removeOne(index)" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+
+                <tr v-show="ary.length?true:false">
+                    <td colspan="3">
+                        <button @click="removeAll" class="btn btn-danger pull-right">删除全部</button>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+
+        <form type="form">
+            <div class="from-group">
+                <label for="name">
+                    商品名称
+                    <input v-model="name" type="text" id="name" class="form-control" placeholder="请输入商品名称">
+                </label>
+                <label for="price">
+                    商品价格
+                    <input v-model="price" type="text" id="price" class="form-control" placeholder="请输入商品价格">
+                </label>
+            </div>
+            <div class="form-group">
+                <button @click="add" type="button" class="btn btn-info">添加</button>
+                <button @click="reset" type="button" class="btn btn-warning">重置</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            name:'',
+            price:'',
+            ary:[
+                {
+                    name:"iPhone1",
+                    price:'1999'
+                },
+                {
+                    name:"iPhone2",
+                    price:'2999'
+                },
+                {
+                    name:"iPhone3",
+                    price:'3999'
+                },
+                {
+                    name:"iPhone4",
+                    price:'4999'
+                },
+                {
+                    name:"iPhone5",
+                    price:'5999'
+                },
+                {
+                    name:"iPhone6",
+                    price:'6999'
+                }
+            ]
+        },
+        methods:{
+            removeOne:function(index){
+                //alert(index);
+                this.ary.splice(index,1);
+            },
+            removeAll:function(){
+                this.ary=[];
+            },
+            add:function(){
+                this.ary.push({
+                    name:this.name,
+                    price:this.price
+                });
+                this.name="";
+                this.price="";
+
+            },
+            reset:function(){
+                this.name="";
+                this.price="";
+
+            }
+        }
+    });
+
+
+
+
+
+</script>
+</body>
+</html>

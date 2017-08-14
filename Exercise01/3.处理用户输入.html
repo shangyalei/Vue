@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 让用户和你的应用互动，可以使用v-on指令绑定一个事件件件监听器，然后通过调用我们Vue实例中的方法 -->
+
+<div id="app">
+    <p>{{msg}}</p>
+    <button @click="change">点击按钮反转文字</button>
+</div>
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:"hello world"
+        },
+        methods:{
+            change:function(){
+                //先切成数组，然后在反转，然后在字符串拼接
+                this.msg=this.msg.split('').reverse().join('');
+                console.log(this);
+                console.log(arguments);
+            }
+        }
+    });
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

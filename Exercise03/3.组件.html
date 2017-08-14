@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <!-- 通过自定义动态属性的方式获取父元素的数据 -->
+    <hello :m="age" :n="name"></hello>
+</div>
+
+
+<div id="app2">
+    <hello :m="age" :n="name"></hello>
+</div>
+<script src="../dist/vue.js"></script>
+<script>
+
+    //写在外面的组件---公共组件,多个实例都能使用这个组件
+    Vue.component('hello',{
+        props:['n','m'],//接收父组件数据
+        template:"<h1>{{msg}} welcome to {{n}} china!{{m}}</h1>",
+        //组件自己的数据
+        data:function(){
+            return {
+                msg:'hello moon'
+            }
+        }
+    });
+
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            name:"lei",
+            age:30
+        }
+    });
+
+
+    var vm2 = new Vue({
+        el:"#app2",
+        data:{
+            name:'尚亚磊',
+            age:8
+        }
+    });
+
+
+
+</script>
+
+
+
+</body>
+</html>

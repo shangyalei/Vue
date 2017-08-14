@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 生命周期就是一个组件从创建到销毁的过程 -->
+
+<div id="app">
+
+    <h1>{{msg}}</h1>
+
+    <button @click="fn">点击更新内容</button>
+
+</div>
+
+<script src="../dist/vue.js"></script>
+<script>
+
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:'zhufeng'
+        },
+        methods:{
+          fn:function(){
+              this.msg='珠峰培训'
+          }
+        },
+        //创建之前
+        beforeCreate:function(){
+            alert('beforeCreate')
+        },
+        created:function(){
+            alert('created');
+        },
+        beforeMount:function(){
+            alert("beforeMount");
+        },
+        //插入之后
+        mounted:function(){
+            alert('mounted');
+        },
+        beforeUpdate:function(){
+            alert('beforeUpdate');
+        },
+        updated:function(){
+            alert('updated');
+        },
+        beforeDestroy:function(){
+            alert('beforeDestroy');
+        },
+        destroyed:function(){
+            alert('destroy');
+        }
+
+    });
+
+    //销毁组件
+    //app.$destroy();//一般不销毁组件
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

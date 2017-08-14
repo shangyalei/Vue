@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 子组件通过自定义动态属性来获取父元素的数据 -->
+
+<div id="app">
+    <parent :aa="li"></parent>
+</div>
+
+<template id="temp">
+    <div>
+        <h1>{{msg}} 父组件{{aa}}</h1>
+        <!-- 通过动态属性传递数据 -->
+        <children :n="msg"></children>
+    </div>
+</template>
+
+
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            li:'leilei'
+        },
+        components:{
+            parent:{
+                props:{aa:String},
+                template:'#temp',
+                data:function(){//这个是parent的数据
+                    return {
+                        msg:"hello!"
+                    }
+                },
+                components:{//子组件，一个父组件里面可以包含对个子组件
+                    children:{
+                        props:['n'],
+                        template:'<h2>{{n}}子组件</h2>'
+                    }
+                }
+            }
+        }
+    });
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

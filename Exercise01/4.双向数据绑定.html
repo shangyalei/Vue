@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    金额：<input type="text" v-model="msg">
+    <h1>{{msg}}</h1>
+    <h1 v-once>{{msg}}</h1>
+</div>
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:0
+        }
+    });
+
+
+
+
+</script>
+</body>
+</html>

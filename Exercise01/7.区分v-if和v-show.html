@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+
+    <button type="button" @click="bok!=bok">显示隐藏</button>
+    <!-- v-if是removeChild 和 appendChild -->
+    <!--<h1 v-if="bok">你能看到我们？</h1>-->
+
+    <!-- v-show是display:none/block; -->
+    <h1 v-show="bok">你能看到我吗？</h1>
+
+</div>
+
+<script src="../dist"></script>
+<script>
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            bok:true
+        }
+    });
+
+</script>
+</body>
+</html>

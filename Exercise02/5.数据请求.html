@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+<button @click="get">get请求得到的数据</button>
+
+<h1 v-for="key in msg">{{key}}</h1>
+
+</div>
+
+<script src="../dist/vue.js"></script>
+<script src="../dist/vue-resource.js"></script>
+<script>
+    var data={
+        msg:""
+    };
+
+    var vm = new Vue({
+        el:"#app",
+        data:data,
+        methods:{
+            get:function(){
+                this.$http.get("data.json").then(function(res){
+                    console.log(res.data);
+                    this.msg=res.data;
+                })
+
+            }
+        }
+
+    });
+
+
+
+</script>
+
+
+</body>
+</html>

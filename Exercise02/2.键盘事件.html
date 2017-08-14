@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+@keydown.enter  Enter键
+@keydown  键盘按下触发
+@keydown.enter.ctrl  按下enter+ctrl触发
+@keydown.tab
+@keydown.delete(捕捉“删除”和"退格"键)
+@keydown.esc
+@keydown.space
+@keydown.up
+@keydown.down
+@keydown.left
+@keydown.right
+
+@keydown.简码  例如@keydown.13=fn
+
+
+
+-->
+
+<div id="app">
+
+    <input @keydown="fn" type="text">
+
+
+</div>
+
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#app",
+        methods:{
+            fn:function(e){
+//                alert(e.keyCode);
+                if(e.keyCode===13){
+                    alert("你按下了Eneter键");
+                }
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

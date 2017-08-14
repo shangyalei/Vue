@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 在Vue中，一个组件的本质是一个拥有预定义选项的一个Vue实例，需注册 -->
+<!-- 一个组件就是一个模板片段 -->
+<!-- 组件可以使用父组件的数据 -->
+
+
+<div id="app">
+
+    <ol>
+        <san v-for="item in todo" :todo="item"></san>
+    </ol>
+
+
+</div>
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    //1.组册组件使用component()方法
+    //第一个参数是组件的名字 {string}
+    //第二个参数是组件的描述 {Object}
+
+    Vue.component('san',{
+        //prop 是一个自定义属性，它的作用是从其父作用域中取出数据
+        props:['todo'],
+        template:'<li>{{todo}}</li>'
+    });
+
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            todo:{
+                name:'尚亚磊',
+                age:30,
+                job:"前端开发工程师"
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

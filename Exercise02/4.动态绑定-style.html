@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 重点：所有的值都通过数据来控制 -->
+
+<div id="app">
+    <!--<h1 :style="{color:color1,background:col2}"></h1>-->
+    <h1 :style="obj"></h1>
+</div>
+
+<script src="../dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            color1:'green',
+            color2:'red',
+            obj:{
+                color:"white",
+                background:'green'
+            }
+        }
+    });
+
+
+
+
+
+</script>
+
+</body>
+</html>

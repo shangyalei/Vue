@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <button type="button" @click="bok=!bok">点击显示或隐藏</button>
+
+    <!-- 相当于style="display:" 只不过这个值是动态控制的 -->
+    <h1 v-if="bok">你能看到我</h1>
+    <h1>你爱吃什么水果呢?</h1>
+    <ul>
+        <!-- 注意凡是vue指令引号里面的，千万不要看做是字符串，它是一对script标签，是一个完整的JS环境 -->
+        <li v-for="attr in friuts">{{attr}}</li>
+    </ul>
+    <ul>
+        <li v-for="(key,value) in students">{{key}}  {{value}}</li>
+    </ul>
+</div>
+
+
+
+<script src="../dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            bok:true,
+            friuts:['西瓜','荔枝','榴莲','芒果'],
+            students:{name:'尚亚磊',age:30,job:"前端开发工程师"}
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
